@@ -22,6 +22,17 @@ namespace :dev do
     end
     puts 'Pronto!'
 
+    puts 'Cadastrando os telefones...'
+    Contact.all.each do |contact|
+      Random.rand(5).times do |i|
+        Phone.create!(
+          number: Faker::PhoneNumber.cell_phone,
+          contact: contact
+        )
+      end
+    end
+    puts 'Pronto!'
+
   end
 
 end
