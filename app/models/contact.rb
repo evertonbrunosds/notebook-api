@@ -1,11 +1,13 @@
 class Contact < ApplicationRecord
     belongs_to :kind
-    def as_json(options={})
+
+    def as_json()
         super(
-            except: [:created_at, :updated_at, :kind_id],
+            except: %i[ created_at updated_at kind_id ],
             include: {
-                kind: {except: [:created_at, :updated_at]}
+                kind: {except: %i[ created_at updated_at ]}
             }
         )
     end
+
 end
