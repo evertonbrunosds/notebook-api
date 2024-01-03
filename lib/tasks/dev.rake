@@ -12,15 +12,13 @@ namespace :dev do
     puts 'Pronto!'
 
     puts 'Cadastrando os contatos...'
-    Kind.all.each do |kind|
-      33.times do |i|
-        Contact.create!(
-          name: Faker::Name.name,
-          email: Faker::Internet.email,
-          birthdate: Faker::Date.between(from: 65.years.ago, to: 18.years.ago),
-          kind_id: kind.id
-        )
-      end
+    100.times do |i|
+      Contact.create!(
+        name: Faker::Name.name,
+        email: Faker::Internet.email,
+        birthdate: Faker::Date.between(from: 65.years.ago, to: 18.years.ago),
+        kind: Kind.all.sample
+      )
     end
     puts 'Pronto!'
 
