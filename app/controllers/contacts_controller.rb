@@ -7,7 +7,8 @@ class ContactsController < ApplicationController
     render json: @contacts,
       include: {
         kind: {except: %i[ created_at updated_at ]},
-        phones: {except: %i[ created_at updated_at contact_id]}
+        phones: {except: %i[ created_at updated_at contact_id]},
+        address: {except: %i[ created_at updated_at contact_id]}
       },
       except: %i[ created_at updated_at kind_id birthdate ]
   end
@@ -17,7 +18,8 @@ class ContactsController < ApplicationController
     render json: @contact,
       include: {
         kind: {except: %i[ created_at updated_at ]},
-        phones: {except: %i[ created_at updated_at contact_id]}
+        phones: {except: %i[ created_at updated_at contact_id]},
+        address: {except: %i[ created_at updated_at contact_id]}
       },
       except: %i[ created_at updated_at kind_id birthdate ]
   end
@@ -29,7 +31,8 @@ class ContactsController < ApplicationController
       render json: @contact,
         include: {
           kind: {except: %i[ created_at updated_at ]},
-          phones: {except: %i[ created_at updated_at contact_id]}
+          phones: {except: %i[ created_at updated_at contact_id]},
+          address: {except: %i[ created_at updated_at contact_id]}
         },
         except: %i[ created_at updated_at kind_id birthdate ],
         status: :created, location: @contact
@@ -44,7 +47,8 @@ class ContactsController < ApplicationController
       render json: @contact,
         include: {
           kind: {except: %i[ created_at updated_at ]},
-          phones: {except: %i[ created_at updated_at contact_id]}
+          phones: {except: %i[ created_at updated_at contact_id]},
+          address: {except: %i[ created_at updated_at contact_id]}
         },
         except: %i[ created_at updated_at kind_id birthdate ]
     else
