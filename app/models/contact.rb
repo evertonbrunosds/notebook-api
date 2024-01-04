@@ -1,15 +1,11 @@
 class Contact < ApplicationRecord
     belongs_to :kind
     has_many :phones, dependent: :destroy
+    accepts_nested_attributes_for :phones
 
-    def as_json
-        json = super(
-            except: %i[ created_at updated_at kind_id birthdate ],
-            include: {
-                kind: {except: %i[ created_at updated_at ]}
-            }
-        )
-        json[:birthdate] = (I18n.l(birthdate) unless birthdate.blank?)
+    def as_json(options={})
+        json = super(options)
+        json[:birthdate] = (I18n.l(self.birthdate) unless self.birthdate.blank?)
         json
     end
 
