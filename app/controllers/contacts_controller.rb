@@ -9,7 +9,7 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1
   def show
-    render json: @contact
+    render json: @contact, include: %i[ kind address phones ]
   end
 
   # POST /contacts
@@ -44,10 +44,6 @@ class ContactsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def contact_params
-      params.require(:contact).permit(
-        :name, :email, :birthdate, :kind_id,
-        phones_attributes: %i[ id number _destroy ],
-        address_attributes: %i[ id street city ]
-      )
+      ActiveModelSerializers::Deserialization.jsonapi_parse(params)
     end
 end
