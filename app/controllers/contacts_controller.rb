@@ -4,38 +4,19 @@ class ContactsController < ApplicationController
   # GET /contacts
   def index
     @contacts = Contact.all
-    render json: @contacts,
-      include: {
-        kind: {except: %i[ created_at updated_at ]},
-        phones: {except: %i[ created_at updated_at contact_id]},
-        address: {except: %i[ created_at updated_at contact_id]}
-      },
-      except: %i[ created_at updated_at kind_id birthdate ]
+    render json: @contacts
   end
 
   # GET /contacts/1
   def show
-    render json: @contact,
-      include: {
-        kind: {except: %i[ created_at updated_at ]},
-        phones: {except: %i[ created_at updated_at contact_id]},
-        address: {except: %i[ created_at updated_at contact_id]}
-      },
-      except: %i[ created_at updated_at kind_id birthdate ]
+    render json: @contact
   end
 
   # POST /contacts
   def create
     @contact = Contact.new(contact_params)
     if @contact.save
-      render json: @contact,
-        include: {
-          kind: {except: %i[ created_at updated_at ]},
-          phones: {except: %i[ created_at updated_at contact_id]},
-          address: {except: %i[ created_at updated_at contact_id]}
-        },
-        except: %i[ created_at updated_at kind_id birthdate ],
-        status: :created, location: @contact
+      render json: @contact, status: :created, location: @contact
     else
       render json: @contact.errors, status: :unprocessable_entity
     end
@@ -44,13 +25,7 @@ class ContactsController < ApplicationController
   # PATCH/PUT /contacts/1
   def update
     if @contact.update(contact_params)
-      render json: @contact,
-        include: {
-          kind: {except: %i[ created_at updated_at ]},
-          phones: {except: %i[ created_at updated_at contact_id]},
-          address: {except: %i[ created_at updated_at contact_id]}
-        },
-        except: %i[ created_at updated_at kind_id birthdate ]
+      render json: @contact
     else
       render json: @contact.errors, status: :unprocessable_entity
     end
