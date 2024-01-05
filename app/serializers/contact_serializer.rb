@@ -4,12 +4,11 @@ class ContactSerializer < ActiveModel::Serializer
   belongs_to :kind do 
     link(:related) { kind_url(object.kind.id) }
   end
-  has_many :phones, dependent: :destroy
-  has_one :address, dependent: :destroy
+  has_many :phones
+  has_one :address
 
   def attributes(*args)
     hash = super(*args)
-    # pt-BR ---> hash[:birthdate] = (I18n.l(object.birthdate) unless object.birthdate.blank?)
     hash[:birthdate] = object.birthdate.to_time.iso8601 unless object.birthdate.blank?
     hash
   end
