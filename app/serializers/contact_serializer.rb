@@ -1,9 +1,13 @@
 class ContactSerializer < ActiveModel::Serializer
   attributes %i[ id name email birthdate created_at updated_at ]
 
-  belongs_to :kind
+  belongs_to :kind do 
+    link(:kind) { kind_url(object.kind.id) }
+  end
   has_many :phones, dependent: :destroy
   has_one :address, dependent: :destroy
+
+  link(:self) { contact_url(object.id) }
 
   def attributes(*args)
     hash = super(*args)
