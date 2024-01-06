@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-    before_action :set_address
+    before_action :set_contact
 
     def create
       @contact.address = Address.new(address_params)
@@ -19,7 +19,7 @@ class AddressesController < ApplicationController
     end
 
     def show
-        render json: @contact.address
+      render json: @contact.address
     end
 
     def destroy
@@ -28,7 +28,7 @@ class AddressesController < ApplicationController
 
     private
     # Use callbacks to share common setup or constraints between actions.
-    def set_address
+    def set_contact
       @contact = Contact.find(params[:contact_id])
     end
 
