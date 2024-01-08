@@ -54,3 +54,5 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'devise_token_auth', '>= 1.2.2', git: "https://github.com/lynndylanhurley/devise_token_auth"
 
 gem 'devise-i18n'
+
+gem 'versionist'
