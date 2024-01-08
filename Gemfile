@@ -56,3 +56,7 @@ gem 'devise_token_auth', '>= 1.2.2', git: "https://github.com/lynndylanhurley/de
 gem 'devise-i18n'
 
 gem 'versionist'
+
+gem 'kaminari'
+
+gem 'api-pagination'
